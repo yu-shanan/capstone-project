@@ -1,4 +1,4 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 
 /**
  * One axios instance for the whole app.
@@ -7,7 +7,9 @@ import axios from 'axios';
  * - a 401 clears the session so the UI can send the user back to /login
  */
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    (import.meta.env.DEV ? 'http://localhost:5000/api' : '/api'),
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -41,3 +43,4 @@ api.interceptors.response.use(
 );
 
 export default api;
+

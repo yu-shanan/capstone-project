@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Single place to personalise the portfolio.
  * Edit these values and the Home page, header and footer update everywhere.
  */
@@ -9,7 +9,7 @@ export const PROFILE = {
     'I design and build web applications end to end - React on the front, Node.js, Express and MongoDB on the back.',
   photo: '/my-photo.jpg',
   location: 'Shanghai, China',
-  email: '3783515@qq.com',
+  email: '3783515499@qq.com',
   github: 'https://github.com/YuShanna',
   availability: 'Open to internships',
   skills: [
@@ -32,3 +32,4 @@ export const PROFILE = {
     'I like clean component boundaries, predictable state, and interfaces that stay usable on a phone. When I am not coding I am usually reading about databases or playing badminton.',
   ],
 };
+
