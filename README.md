@@ -1,4 +1,4 @@
-﻿# Full-Stack Portfolio & Blog 鈥?Capstone Project
+# Full-Stack Portfolio & Blog — Capstone Project
 
 A production-style personal portfolio and blog. A REST API on **Node.js + Express + MongoDB Atlas**
 powers a **React 19 SPA** with public pages, authentication, comments and a protected admin dashboard.
@@ -16,7 +16,7 @@ powers a **React 19 SPA** with public pages, authentication, comments and a prot
 | Back-end (API) | https://capstone-project-rose-two.vercel.app |
 | API index / health | https://capstone-project-rose-two.vercel.app/ · /api/health |
 
-> Deployed on Vercel (Hobby). The API runs as a serverless function (`server/api/index.js`); data lives in MongoDB Atlas (`capstone`). Demo admin: `admin@example.com` / `admin123456`. Verification record: `docs/DEPLOYED.md`.
+> Deployed on Vercel (Hobby): the API runs as a serverless function (`server/api/index.js`) with MongoDB Atlas (`capstone`). Demo admin: `admin@example.com` / `admin123456`. Verification record: `docs/DEPLOYED.md`.
 
 ---
 
@@ -45,23 +45,23 @@ powers a **React 19 SPA** with public pages, authentication, comments and a prot
 
 ```
 capstone/
-鈹溾攢 README.md                 <- this file (required by the submission)
-鈹溾攢 server/                   Express API 鈥?MVC
-鈹? 鈹溾攢 config/db.js           MongoDB Atlas connection
-鈹? 鈹溾攢 models/                User, Project, BlogPost, Comment, Message
-鈹? 鈹溾攢 controllers/           one controller per resource
-鈹? 鈹溾攢 routes/                /api/users, /api/projects, /api/blog, /api/contact
-鈹? 鈹溾攢 middleware/            protect (JWT), error (central handler)
-鈹? 鈹溾攢 utils/                 ErrorHandler, generateToken
-鈹? 鈹溾攢 scripts/seedAdmin.js   optional demo admin
-鈹? 鈹溾攢 app.js                 express app (helmet, cors, routes, 404, errors)
-鈹? 鈹斺攢 server.js              connect DB + listen
-鈹斺攢 client/                   React SPA
-   鈹溾攢 src/api/axios.js       axios instance + JWT interceptor
-   鈹溾攢 src/context/           AuthContext (global auth state), ThemeContext
-   鈹溾攢 src/components/        Layout, Footer, ProjectCard, BlogCard, ProtectedRoute
-   鈹溾攢 src/pages/             Home, Projects, Blog, BlogDetail, Contact, Login, Register, Admin, NotFound
-   鈹斺攢 src/config.js          鈫?personalise your name, bio, photo, links here
+├─ README.md                 <- this file (required by the submission)
+├─ server/                   Express API — MVC
+│  ├─ config/db.js           MongoDB Atlas connection
+│  ├─ models/                User, Project, BlogPost, Comment, Message
+│  ├─ controllers/           one controller per resource
+│  ├─ routes/                /api/users, /api/projects, /api/blog, /api/contact
+│  ├─ middleware/            protect (JWT), error (central handler)
+│  ├─ utils/                 ErrorHandler, generateToken
+│  ├─ scripts/seedAdmin.js   optional demo admin
+│  ├─ app.js                 express app (helmet, cors, routes, 404, errors)
+│  └─ server.js              connect DB + listen
+└─ client/                   React SPA
+   ├─ src/api/axios.js       axios instance + JWT interceptor
+   ├─ src/context/           AuthContext (global auth state), ThemeContext
+   ├─ src/components/        Layout, Footer, ProjectCard, BlogCard, ProtectedRoute
+   ├─ src/pages/             Home, Projects, Blog, BlogDetail, Contact, Login, Register, Admin, NotFound
+   └─ src/config.js          ← personalise your name, bio, photo, links here
 ```
 
 ---
@@ -72,19 +72,19 @@ Base URL locally: `http://localhost:5000/api`
 
 | Method | Endpoint | Access | Body / notes |
 |--------|----------|--------|--------------|
-| POST | `/api/users/register` | Public | `{ username, email, password }` (password 鈮?6) |
-| POST | `/api/users/login` | Public | `{ email, password }` 鈫?`{ token, _id, username, email }` |
+| POST | `/api/users/register` | Public | `{ username, email, password }` (password ≥ 6) |
+| POST | `/api/users/login` | Public | `{ email, password }` → `{ token, _id, username, email }` |
 | GET | `/api/users/me` | Bearer | current user (used to validate a stored token) |
 | GET | `/api/projects` | Public | all projects, `user` populated with `username` |
 | GET | `/api/projects/:id` | Public | single project |
 | POST | `/api/projects` | Bearer | `{ title, description, imageUrl?, repoUrl?, liveUrl? }` |
 | PUT | `/api/projects/:id` | Bearer | partial update of the fields above |
-| DELETE | `/api/projects/:id` | Bearer | 鈥?|
-| POST | `/api/contact` | Public | `{ name, email, message }` 鈫?stored as a Message |
+| DELETE | `/api/projects/:id` | Bearer | – |
+| POST | `/api/contact` | Public | `{ name, email, message }` → stored as a Message |
 | GET | `/api/blog` | Public | all posts, `author` populated with `username` |
 | GET | `/api/blog/:id` | Public | post + `author` + `comments[]` |
 | POST | `/api/blog` | Bearer | `{ title, content }` (author = `req.user`) |
-| PUT | `/api/blog/:id` | Bearer + author | `{ title?, content? }` 鈥?403 if not the author |
+| PUT | `/api/blog/:id` | Bearer + author | `{ title?, content? }` — 403 if not the author |
 | DELETE | `/api/blog/:id` | Bearer + author | also deletes the post's comments |
 | GET | `/api/blog/:postId/comments` | Public | all comments for a post |
 | POST | `/api/blog/:postId/comments` | Bearer | `{ body }` |
@@ -122,7 +122,7 @@ npm run seed:demo   # optional: also adds 3 demo projects + 2 blog posts
 npm run dev         # nodemon, http://localhost:5000
 ```
 
-In MongoDB Atlas 鈫?**Network Access**, allow your IP (or `0.0.0.0/0` for a demo).
+In MongoDB Atlas → **Network Access**, allow your IP (or `0.0.0.0/0` for a demo).
 
 ### 2. Front-end
 
@@ -138,20 +138,20 @@ then manage content from **/admin**.
 
 ### 3. Personalise it
 
-Edit `client/src/config.js` 鈥?name, role, bio, skills, photo (`client/public/my-photo.jpg`),
+Edit `client/src/config.js` — name, role, bio, skills, photo (`client/public/my-photo.jpg`),
 email and GitHub link all come from that one object.
 
 ---
 
 ## Deployment
 
-**Back-end 鈫?Render (or Railway/Heroku)**
+**Back-end → Render (or Railway/Heroku)**
 1. Push the repository to GitHub.
-2. New **Web Service** 鈫?Root Directory `server`, Build `npm install`, Start `node server.js`.
+2. New **Web Service** → Root Directory `server`, Build `npm install`, Start `node server.js`.
 3. Environment variables: `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL` (your Vercel URL), `PORT` (leave unset).
 4. Deploy, then check `https://<your-api>.onrender.com/api/health`.
 
-**Front-end 鈫?Vercel (or Netlify)**
+**Front-end → Vercel (or Netlify)**
 1. Import the repo, Root Directory `client`, Framework preset **Vite**,
    Build `npm run build`, Output `dist`.
 2. Environment variable `VITE_API_URL=https://<your-api>.onrender.com/api`.
