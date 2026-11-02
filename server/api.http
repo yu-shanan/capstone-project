@@ -1,0 +1,107 @@
+# Thunder Client / REST Client examples
+# (VS Code: install "REST Client" and click "Send Request")
+
+@host = http://localhost:5000
+@token = PASTE_TOKEN_HERE
+
+### Health
+GET {{host}}/api/health
+
+### Register
+POST {{host}}/api/users/register
+Content-Type: application/json
+
+{
+  "username": "alice",
+  "email": "alice@example.com",
+  "password": "secret123"
+}
+
+### Login
+POST {{host}}/api/users/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "secret123"
+}
+
+### List projects
+GET {{host}}/api/projects
+
+### Create project (auth)
+POST {{host}}/api/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Portfolio Website",
+  "description": "My personal portfolio built with React",
+  "repoUrl": "https://github.com/me/portfolio",
+  "liveUrl": "https://me.vercel.app"
+}
+
+### List posts
+GET {{host}}/api/blog
+
+### Create post (auth)
+POST {{host}}/api/blog
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Hello World",
+  "content": "My first blog post."
+}
+
+### Add comment (auth)
+POST {{host}}/api/blog/PASTE_POST_ID/comments
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "body": "Nice post!"
+}
+
+### Contact form
+POST {{host}}/api/contact
+Content-Type: application/json
+
+{
+  "name": "Visitor",
+  "email": "visitor@example.com",
+  "message": "Hello, I like your site!"
+}
+
+### Current user (auth) - useful to check a token
+GET {{host}}/api/users/me
+Authorization: Bearer {{token}}
+
+### Update project (auth)
+PUT {{host}}/api/projects/PASTE_PROJECT_ID
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Portfolio Website v2"
+}
+
+### Delete project (auth)
+DELETE {{host}}/api/projects/PASTE_PROJECT_ID
+Authorization: Bearer {{token}}
+
+### Update post (auth + author only, 403 otherwise)
+PUT {{host}}/api/blog/PASTE_POST_ID
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "content": "Updated content."
+}
+
+### Delete post (auth + author only)
+DELETE {{host}}/api/blog/PASTE_POST_ID
+Authorization: Bearer {{token}}
+
+### List comments of a post (public)
+GET {{host}}/api/blog/PASTE_POST_ID/comments
